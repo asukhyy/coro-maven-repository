@@ -1,1 +1,0 @@
-# coro-maven-repository

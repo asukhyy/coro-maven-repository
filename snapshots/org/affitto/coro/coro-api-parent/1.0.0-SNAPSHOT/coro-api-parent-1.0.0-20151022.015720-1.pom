@@ -25,8 +25,6 @@
         </coro.snapshots.repo.url>
         <coro.releases.repo.url>coro-repo::default::file:${coro.releases.repo.path}
         </coro.releases.repo.url>
-
-
     </properties>
 
     <developers>
@@ -86,6 +84,7 @@
                 <artifactId>maven-deploy-plugin</artifactId>
                 <configuration>
                     <altDeploymentRepository>${coro.repo.url}</altDeploymentRepository>
+                    <deployAtEnd>true</deployAtEnd>
                 </configuration>
             </plugin>
         </plugins>
