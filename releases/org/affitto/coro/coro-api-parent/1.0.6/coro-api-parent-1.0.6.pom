@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>coro-api-parent</artifactId>
+    <groupId>org.affitto.coro</groupId>
+    <packaging>pom</packaging>
+    <name>Coro API Parent</name>
+    <version>1.0.6</version>
+
+    <properties>
+        <maven.version>3.3.3</maven.version>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <main.basedir>target</main.basedir>
+
+        <coro.snapshots.repo.path>${main.basedir}/repository/snapshots</coro.snapshots.repo.path>
+        <coro.releases.repo.path>${main.basedir}/repository/releases</coro.releases.repo.path>
+
+        <coro.snapshots.repo.url>coro-snapshots-repo::default::file:${coro.snapshots.repo.path}
+        </coro.snapshots.repo.url>
+        <coro.releases.repo.url>coro-repo::default::file:${coro.releases.repo.path}
+        </coro.releases.repo.url>
+    </properties>
+
+    <developers>
+        <developer>
+            <name>Andriy Sukhyy</name>
+            <organization>Affitto</organization>
+            <email>asukhyy@gmail.com</email>
+        </developer>
+    </developers>
+
+    <prerequisites>
+        <maven>${maven.version}</maven>
+    </prerequisites>
+
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/asukhyy/coro-api/issues</url>
+    </issueManagement>
+
+    <scm>
+        <url>https://github.com/asukhyy/coro-api</url>
+        <connection>https://github.com/asukhyy/coro-api.git</connection>
+        <developerConnection>scm:git:https://github.com/asukhyy/coro-api.git</developerConnection>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>coro-repo</id>
+            <url>https://github.com/asukhyy/coro-maven-repository/raw/master/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>coro-snapshots-repo</id>
+            <url>https://github.com/asukhyy/coro-maven-repository/raw/master/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <dependencyManagement>
+        <dependencies>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <altDeploymentRepository>${coro.repo.url}</altDeploymentRepository>
+                    <deployAtEnd>true</deployAtEnd>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>snapshots</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <coro.repo.url>${coro.snapshots.repo.url}</coro.repo.url>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>releases</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <coro.repo.url>${coro.releases.repo.url}</coro.repo.url>
+            </properties>
+        </profile>
+
+    </profiles>
+
+</project>
